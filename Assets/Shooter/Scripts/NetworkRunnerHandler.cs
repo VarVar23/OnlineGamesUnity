@@ -6,8 +6,18 @@ using UnityEngine;
 
 public class NetworkRunnerHandler : MonoBehaviour, INetworkRunnerCallbacks
 {
+    [SerializeField] private Transform[] _spawnPoints; // Homework 1
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private readonly Dictionary<PlayerRef, NetworkObject> _spawnedPlayers = new();
+
+    private bool _mouseButton0;
+    private bool _mouseButton1;
+
+    private void Update()
+    {
+        _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
+        _mouseButton1 = _mouseButton1 | Input.GetMouseButton(1);
+    }
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
@@ -15,7 +25,7 @@ public class NetworkRunnerHandler : MonoBehaviour, INetworkRunnerCallbacks
 
         if(runner.IsServer)
         {
-            Vector3 spawnPosition = new Vector3(0, 1, 0);
+            Vector3 spawnPosition = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Length)].position; // Homework 1
             NetworkObject networkObject = runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
             _spawnedPlayers.Add(player, networkObject);
         }
@@ -39,6 +49,15 @@ public class NetworkRunnerHandler : MonoBehaviour, INetworkRunnerCallbacks
 
         data.Direction = movement;
         data.Direction.Normalize();
+
+        if (_mouseButton0)
+            data.buttons |= NetworkInputData.MouseButton0;
+
+        if (_mouseButton1)
+            data.buttons |= NetworkInputData.MouseButton1;
+
+        _mouseButton0 = false;
+        _mouseButton1 = false;
 
         input.Set(data);
     }
