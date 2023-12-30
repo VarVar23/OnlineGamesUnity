@@ -29,7 +29,7 @@ public class NetworkPlayer : NetworkBehaviour
     private void Awake()
     {
         _networkCharacterController = GetComponent<NetworkCharacterControllerPrototype>();
-        _material = GetComponentInChildren<MeshRenderer>().material;
+        //_material = GetComponentInChildren<MeshRenderer>().material;
     }
 
     private void Update()
@@ -42,7 +42,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public override void Render()
     {
-        _material.color = Color.Lerp(_material.color, Color.white, Time.deltaTime);
+        //_material.color = Color.Lerp(_material.color, Color.white, Time.deltaTime);
     }
 
     public override void FixedUpdateNetwork()
@@ -111,7 +111,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public static void OnBombSpawned(Changed<NetworkPlayer> player)
     {
-        player.Behaviour._material.color = Color.green;
+        //player.Behaviour._material.color = Color.green;
     }
 
 
