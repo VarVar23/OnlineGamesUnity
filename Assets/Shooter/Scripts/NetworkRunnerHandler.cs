@@ -10,14 +10,14 @@ public class NetworkRunnerHandler : MonoBehaviour, INetworkRunnerCallbacks
     [SerializeField] private NetworkPrefabRef _playerPrefab;
     private readonly Dictionary<PlayerRef, NetworkObject> _spawnedPlayers = new();
 
-    private bool _mouseButton0;
-    private bool _mouseButton1;
+    //private bool _mouseButton0;
+    //private bool _mouseButton1;
 
-    private void Update()
-    {
-        _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
-        _mouseButton1 = _mouseButton1 | Input.GetMouseButton(1);
-    }
+    //private void Update()
+    //{
+    //    _mouseButton0 = _mouseButton0 | Input.GetMouseButton(0);
+    //    _mouseButton1 = _mouseButton1 | Input.GetMouseButton(1);
+    //}
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
@@ -50,14 +50,8 @@ public class NetworkRunnerHandler : MonoBehaviour, INetworkRunnerCallbacks
         data.Direction = movement;
         data.Direction.Normalize();
 
-        if (_mouseButton0)
-            data.buttons |= NetworkInputData.MouseButton0;
-
-        if (_mouseButton1)
-            data.buttons |= NetworkInputData.MouseButton1;
-
-        _mouseButton0 = false;
-        _mouseButton1 = false;
+        data.buttons |= Input.GetMouseButton(0) ? NetworkInputData.MouseButton0 : (byte)0;
+        data.buttons |= Input.GetMouseButton(1) ? NetworkInputData.MouseButton1 : (byte)0;
 
         input.Set(data);
     }

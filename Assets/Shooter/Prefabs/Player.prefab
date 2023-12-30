@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 3936989679081201217}
   - component: {fileID: 3957902935644276855}
   - component: {fileID: 5316707314075138111}
+  - component: {fileID: -6743520115550003918}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -158,6 +159,8 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _bulletPrefab: {fileID: 2609903890975184282, guid: 533df101364fea54aa68115235455b82, type: 3}
   _shootDelay: 0.5
+  _bombDelay: 0.5
+  _powerThrow: 4
   _bombPrefab: {fileID: 2625535996244609848, guid: bca41d6d08a41a34d885480b154f66e5, type: 3}
   _force: 10
 --- !u!114 &3936989679081201217
@@ -184,6 +187,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 6556085840070919980}
   - {fileID: 5316707314075138111}
+  - {fileID: -6743520115550003918}
   SimulationBehaviours: []
 --- !u!143 &3957902935644276855
 CharacterController:
@@ -247,3 +251,18 @@ MonoBehaviour:
   rotationSpeed: 15
   _IsGrounded: 0
   _Velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &-6743520115550003918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3757879310284650493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e157faeacfaec374dbf555a08647e3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _maximumHealth: 100
+  _CurrentHealth: 0

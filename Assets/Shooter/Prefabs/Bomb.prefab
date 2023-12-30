@@ -50,7 +50,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _lifeTime: 5
+  _lifeTime: 15
+  _bodyRadius: 0.3
+  _areaRadius: 3
+  _areaDamage: 50
+  _areaImpulse: 10
 --- !u!114 &4267044529839015178
 MonoBehaviour:
   m_ObjectHideFlags: 0
